@@ -8,13 +8,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
-    <!--Questão 1 -->
+<body id="body">
+    <!--Questão 1-->
     <form name="trocaCor">
         <fieldset>
             <legend>Troca de cor</legend>
             <p id="texto">Texto</p>
-            <br><br>
             <input type="button" id="vermelho" value="Vermelho">
             <input type="button" id="Verde" value="Verde">
             <input type="button" id="Azul" value="Azul">
@@ -22,23 +21,46 @@
         </fieldset>
     </form>
 
+    <br><br>
+
+    <!--Questão 2-->
+    <p>
+        <a href="#" id="corVermelho"> Vermelho </a><br>
+        <a href="#" id="corVerde">Verde</a> <br>
+        <a href="#" id="corAzul">Azul</a><br>
+        <a href="#" id="corAmarelo">Amarelo</a>
+    </p>
+
     <script>
         //Questão 1 
         document.getElementById("vermelho").onclick = function() {
             document.getElementById("texto").style.color = "red";
         }
-
         document.getElementById("Verde").onclick = function() {
             document.getElementById("texto").style.color = "green";
         }
-
         document.getElementById("Azul").onclick = function() {
             document.getElementById("texto").style.color = "blue";
         }
-
         document.getElementById("Amarelo").onclick = function() {
             document.getElementById("texto").style.color = "yellow";
         }
+
+
+        //Questão 2 
+        document.getElementById("corVermelho").onmouseover = function() {
+            document.getElementById("body").style.background = "red";
+        }
+        document.getElementById("corVerde").onmouseover = function() {
+            document.getElementById("body").style.background = "green";
+        }
+        document.getElementById("corAzul").onmouseover = function() {
+            document.getElementById("body").style.background = "blue";
+        }
+        document.getElementById("corAmarelo").onmouseover = function() {
+            document.getElementById("body").style.background = "yellow";
+        }
+
 
     </script>
 </body>
