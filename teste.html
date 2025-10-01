@@ -15,10 +15,10 @@
         <fieldset>
             <legend>Troca de cor</legend>
             <p id="texto">Texto</p>
-            <input type="button" id="vermelho" value="Vermelho">
-            <input type="button" id="Verde" value="Verde">
-            <input type="button" id="Azul" value="Azul">
-            <input type="button" id="Amarelo" value="Amarelo">
+            <button id="vermelho">Vermelho</button>
+            <button id="Verde">Verde</button>
+            <button id="Azul">Azul</button>
+            <button id="Amarelo">Amarelo</button>
         </fieldset>
     </form>
 
@@ -31,7 +31,8 @@
         <a href="#" id="corAzul">Azul</a><br>
         <a href="#" id="corAmarelo">Amarelo</a>
     </p>
-    <br>
+
+    <br><br>
 
     <!--Questão 4-->
     <fieldset>
@@ -40,6 +41,22 @@
         <input type="button" id="OcultarMostrar" value="Ocultar/Mostrar">
     </fieldset>
     </input>
+
+    <br><br>
+
+    <!--Questão 5-->
+    <form id="cadastro" method="post">
+        <fieldset>
+            <legend>Cadastro</legend>
+            <label for="usuario">Usuário:</label>
+            <input type="text" id="usuario" name="usuario" required><br><br>
+            <label for="senha">Senha:</label>
+            <input type="password" id="senha" name="senha" required><br><br>
+            <label for="confirmarSenha">Confirmar Senha:</label>
+            <input type="password" id="confirmarSenha" name="confirmarSenha" required><br><br>
+            <input type="submit" value="Entrar">
+        </fieldset>
+    </form>
 
     <script>
         //Questão 1 
@@ -73,11 +90,25 @@
 
         //Questão 4
         document.getElementById("OcultarMostrar").onclick = function() {
-            var texto = document.getElementById("idtexto");
+            let texto = document.getElementById("idtexto");
             if (texto.style.display === "none") {
                 texto.style.display = "block";
             } else {
                 texto.style.display = "none";
+            }
+        }
+
+        //Questão 5
+        document.getElementById("cadastro").onsubmit = function(event) {
+            let senha = document.getElementById("senha").value;
+            let confirmarSenha = document.getElementById("confirmarSenha").value;
+            if (senha != confirmarSenha) {
+                alert("Senha incorreta.");
+            } else if (senha.length < 6 || senha.length > 10) {
+                alert("A senha deve ter entre 6 a 10 caracteres.");
+            }
+            else {
+                alert("Login bem-sucedido!");
             }
         }
 
