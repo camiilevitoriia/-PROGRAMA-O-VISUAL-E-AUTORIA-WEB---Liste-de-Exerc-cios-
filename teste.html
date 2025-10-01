@@ -9,6 +9,7 @@
     <title>Document</title>
 </head>
 <body id="body">
+
     <!--Questão 1-->
     <form name="trocaCor">
         <fieldset>
@@ -30,6 +31,15 @@
         <a href="#" id="corAzul">Azul</a><br>
         <a href="#" id="corAmarelo">Amarelo</a>
     </p>
+    <br>
+
+    <!--Questão 4-->
+    <fieldset>
+        <legend>Ocultar e Mostrar</legend>
+        <p id="idtexto">Texto</p>
+        <input type="button" id="OcultarMostrar" value="Ocultar/Mostrar">
+    </fieldset>
+    </input>
 
     <script>
         //Questão 1 
@@ -60,6 +70,18 @@
         document.getElementById("corAmarelo").onmouseover = function() {
             document.getElementById("body").style.background = "yellow";
         }
+
+        //Questão 4
+        document.getElementById("OcultarMostrar").onclick = function() {
+            var texto = document.getElementById("idtexto");
+            if (texto.style.display === "none") {
+                texto.style.display = "block";
+            } else {
+                texto.style.display = "none";
+            }
+        }
+
+
 
 
     </script>
