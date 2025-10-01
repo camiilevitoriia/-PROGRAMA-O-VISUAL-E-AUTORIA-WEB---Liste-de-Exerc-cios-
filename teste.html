@@ -1,0 +1,45 @@
+    
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--Questão 1 -->
+    <form name="trocaCor">
+        <fieldset>
+            <legend>Troca de cor</legend>
+            <p id="texto">Texto</p>
+            <br><br>
+            <input type="button" id="vermelho" value="Vermelho">
+            <input type="button" id="Verde" value="Verde">
+            <input type="button" id="Azul" value="Azul">
+            <input type="button" id="Amarelo" value="Amarelo">
+        </fieldset>
+    </form>
+
+    <script>
+        //Questão 1 
+        document.getElementById("vermelho").onclick = function() {
+            document.getElementById("texto").style.color = "red";
+        }
+
+        document.getElementById("Verde").onclick = function() {
+            document.getElementById("texto").style.color = "green";
+        }
+
+        document.getElementById("Azul").onclick = function() {
+            document.getElementById("texto").style.color = "blue";
+        }
+
+        document.getElementById("Amarelo").onclick = function() {
+            document.getElementById("texto").style.color = "yellow";
+        }
+
+    </script>
+</body>
+</html>
