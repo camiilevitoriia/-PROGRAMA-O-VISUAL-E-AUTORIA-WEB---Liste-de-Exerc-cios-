@@ -58,6 +58,8 @@
         </fieldset>
     </form>
 
+    <br><br>
+
     <!--Questão 7-->
     <fieldset>
         <input type="text" id="n1"><br>
@@ -67,7 +69,86 @@
         <input type="text" id="n5"><br>
         <button onclick="inverter()">Inverter Nomes</button>
     </fieldset>
+
+    <br><br>
     
+    <!--Questão 8-->
+    <fieldset>
+        CPF: <input type="text" id="cpf">
+        <button onclick="validarCPF()">Validar</button>
+        <p id="resultado"></p>
+    </fieldset>
+
+    <br><br>
+
+    <!--Questão 9-->
+    <fieldset>
+        <form id="formQ9">
+            <label for="palavra1">Primeira palavra:</label>
+            <input type="text" id="palavra1">
+            <label for="palavra2">Segunda palavra:</label>
+            <input type="text" id="palavra2">
+            <button type="button" onclick="intercalar()">Intercalar</button>
+            <label for="resultadoQ9">Resultado:</label>
+            <input type="text" id="resultadoQ9" disabled>
+        </form>
+    </fieldset>
+
+    <br><br>
+
+    <!--Questão 10-->
+    <fieldset>
+        <form id="formQ10">
+            <label for="num1">Número 1:</label>
+            <input type="number" id="num1">
+            <label for="num2">Número 2:</label>
+            <input type="number" id="num2">
+            <label for="num3">Número 3:</label>
+            <input type="number" id="num3">
+            <button type="button" onclick="analisarNumeros()">Analisar</button>
+        </form>
+        <div id="resultadoQ10" class="resultado"></div>
+    </fieldset>
+    
+    <br><br>
+
+    <!--Questão 11-->
+    <fieldset>
+        <form id="formQ11">
+            <label for="tabuadaNum">Digite um número:</label>
+            <input type="number" id="tabuadaNum">
+            <button type="button" onclick="tabuada()">Gerar Tabuada</button>
+        </form>
+        <div id="resultadoQ11" class="resultado"></div>
+    </fieldset>
+
+    <br><br>
+
+    <!--Questão 12-->
+    <fieldset>
+        <form id="formQ12">
+        <label for="palavraBusca">Palavra para pesquisar:</label>
+        <input type="text" id="palavraBusca">
+        <button type="button" onclick="pesquisarPalavra()">Pesquisar</button>
+    </form>
+    <div id="resultadoQ12" class="resultado"></div>
+    <div id="textoParaBusca" class="texto">
+        <p>Anavitória é uma dupla de música folk-pop brasileira formado em 2014 em Araguaína, Tocantins pelas cantoras Ana Caetano e Vitória Falcão.</p>
+        <p>Após o lançamento do primeiro EP, em 2015, as cantoras promoveram uma campanha de financiamento coletivo para arrecadar mais de R$ 60 mil para gravar o primeiro álbum completo, Anavitória, lançado em agosto de 2016 pela gravadora Universal Music.</p>
+    </div>
+    </fieldset>
+
+    <br><br>
+
+    <!--Questão 13-->
+    <fieldset>
+        <form id="formQ13">
+            <label for="dataInput">Data (dd/mm/aaaa):</label>
+            <input type="text" id="dataInput" placeholder="Ex: 06/09/2024">
+            <button type="button" onclick="dataPorExtenso()">Converter</button>
+        </form>
+        <div id="resultadoQ13" class="resultado"></div>
+    </fieldset>
 
     <script>
         //Questão 1 
@@ -124,7 +205,7 @@
         }
 
         //Questão 7
-        function inverter7() {
+        function inverter() {
             let nomes = [
                 document.getElementById("n1").value,
                 document.getElementById("n2").value,
@@ -138,8 +219,166 @@
       }
     }
 
+    //Questão 8
+    function validarCPF() {
+      let cpf = document.getElementById("cpf").value.replace(/\D/g, '');
+      if (cpf.length !== 11 || /^(\d)\1{10}$/.test(cpf)) {
+        document.getElementById("resultado").innerText = "CPF Inválido";
+        return;
+      }
+      let soma = 0, resto;
+      for (let i = 1; i <= 9; i++) soma += parseInt(cpf.substring(i-1, i)) * (11 - i);
+      resto = (soma * 10) % 11;
+      if (resto === 10 || resto === 11) resto = 0;
+      if (resto !== parseInt(cpf.substring(9, 10))) {
+        document.getElementById("resultado").innerText = "CPF Inválido";
+        return;
+      }
+      soma = 0;
+      for (let i = 1; i <= 10; i++) soma += parseInt(cpf.substring(i-1, i)) * (12 - i);
+      resto = (soma * 10) % 11;
+      if (resto === 10 || resto === 11) resto = 0;
+      if (resto !== parseInt(cpf.substring(10, 11))) {
+        document.getElementById("resultado").innerText = "CPF Inválido";
+        return;
+      }
+      document.getElementById("resultado").innerText = "CPF Válido";
+    }
 
+    //Questão 9
+    function intercalar() {
+            let palavra1 = document.getElementById('palavra1').value;
+            let palavra2 = document.getElementById('palavra2').value;
+            let resultado = '';
+            let maxLength = Math.max(palavra1.length, palavra2.length);
 
+            for (let i = 0; i < maxLength; i++) {
+                if (i < palavra1.length) {
+                    resultado += palavra1[i];
+                }
+                if (i < palavra2.length) {
+                    resultado += palavra2[i];
+                }
+            }
+            document.getElementById('resultadoQ9').value = resultado;
+        }
+
+    //Questão 10
+    function analisarNumeros() {
+            let num1 = parseFloat(document.getElementById('num1').value);
+            let num2 = parseFloat(document.getElementById('num2').value);
+            let num3 = parseFloat(document.getElementById('num3').value);
+
+            if (isNaN(num1) || isNaN(num2) || isNaN(num3)) {
+                document.getElementById('resultadoQ10').innerHTML = '<p>Insira três números válidos.</p>';
+                return;
+            }
+
+            let soma = num1 + num2 + num3;
+            let media = soma / 3;
+            let produto = num1 * num2 * num3;
+            let maior = Math.max(num1, num2, num3);
+            let menor = Math.min(num1, num2, num3);
+
+            let tabelaHTML = `
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Dados</th>
+                            <th>Valor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Números digitados</td><td>${num1}, ${num2}, ${num3}</td></tr>
+                        <tr><td>Soma</td><td>${soma.toFixed(2)}</td></tr>
+                        <tr><td>Média</td><td>${media.toFixed(2)}</td></tr>
+                        <tr><td>Produto</td><td>${produto.toFixed(2)}</td></tr>
+                        <tr><td>Maior número</td><td>${maior}</td></tr>
+                        <tr><td>Menor número</td><td>${menor}</td></tr>
+                    </tbody>
+                </table>
+            `;
+            document.getElementById('resultadoQ10').innerHTML = tabelaHTML;
+        }
+
+    //Questão 11
+    function tabuada() {
+            let num = parseInt(document.getElementById('tabuadaNum').value);
+            let resultadoDiv = document.getElementById('resultadoQ11');
+            
+            if (isNaN(num)) {
+                resultadoDiv.innerHTML = '<p>Por favor, insira um número válido.</p>';
+                return;
+            }
+
+            let tabelaHTML = '<table><thead><tr><th>Operação</th><th>Resultado</th></tr></thead><tbody>';
+            for (let i = 1; i <= 10; i++) {
+                tabelaHTML += `<tr><td>${num} x ${i}</td><td>${num * i}</td></tr>`;
+            }
+            tabelaHTML += '</tbody></table>';
+            resultadoDiv.innerHTML = tabelaHTML;
+        }
+
+    //Questão 12
+    function pesquisarPalavra() {
+            let palavraBusca = document.getElementById('palavraBusca').value.trim();
+            let textoDiv = document.getElementById('textoParaBusca');
+            let resultadoDiv = document.getElementById('resultadoQ12');
+            let textoOriginal = textoDiv.innerHTML;
+
+            textoDiv.innerHTML = textoOriginal.replace(/<span class="highlight">(.*?)<\/span>/g, '$1');
+            
+            if (palavraBusca === '') {
+                resultadoDiv.innerHTML = '<p>Por favor, digite uma palavra para pesquisar.</p>';
+                return;
+            }
+
+            // A busca ignora maiúsculas/minúsculas e palavras inteiras
+            let regex = new RegExp(`\\b(${palavraBusca})\\b`, 'gi');
+            let matches = textoOriginal.match(regex);
+            let count = matches ? matches.length : 0;
+
+            if (count > 0) {
+                let novoTexto = textoDiv.innerHTML.replace(regex, `<span class="highlight">${palavraBusca}</span>`);
+                textoDiv.innerHTML = novoTexto;
+                resultadoDiv.innerHTML = `<p>A palavra "${palavraBusca}" foi encontrada ${count} vez(es).</p>`;
+            } else {
+                resultadoDiv.innerHTML = `<p>A busca não retornou nenhum resultado para "${palavraBusca}".</p>`;
+            }
+        }
+
+    //Questão 13
+    function dataPorExtenso() {
+            let dataInput = document.getElementById('dataInput').value;
+            let resultadoDiv = document.getElementById('resultadoQ13');
+            
+            const meses = [
+                'janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho',
+                'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'
+            ];
+
+            // Usa a função split() para dividir a string da data [cite: 153]
+            let partesData = dataInput.split('/');
+
+            if (partesData.length !== 3 || isNaN(partesData[0]) || isNaN(partesData[1]) || isNaN(partesData[2])) {
+                resultadoDiv.innerHTML = '<p>Formato de data inválido. Use "dd/mm/aaaa".</p>';
+                return;
+            }
+
+            let dia = parseInt(partesData[0]);
+            let mes = parseInt(partesData[1]);
+            let ano = parseInt(partesData[2]);
+
+            // Validação simples de data
+            if (mes < 1 || mes > 12) {
+                resultadoDiv.innerHTML = '<p>Mês inválido.</p>';
+                return;
+            }
+
+            let mesExtenso = meses[mes - 1];
+            let dataFormatada = `${dia} de ${mesExtenso} de ${ano}`;
+            resultadoDiv.innerHTML = `<p>${dataFormatada}</p>`;
+        }
 
     </script>
 </body>
