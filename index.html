@@ -15,10 +15,10 @@
         <fieldset>
             <legend>Troca de cor</legend>
             <p id="texto">Texto</p>
-            <button id="vermelho">Vermelho</button>
-            <button id="Verde">Verde</button>
-            <button id="Azul">Azul</button>
-            <button id="Amarelo">Amarelo</button>
+            <button type="button" id="vermelho">Vermelho</button>
+            <button type="button" id="Verde">Verde</button>
+            <button type="button" id="Azul">Azul</button>
+            <button type="button" id="Amarelo">Amarelo</button>
         </fieldset>
     </form>
 
@@ -57,6 +57,19 @@
             <input type="submit" value="Entrar">
         </fieldset>
     </form>
+
+    <br><br>
+
+    <!--Questão 6-->
+    <form id="login" method="post">
+        <fieldset>
+            <legend> É um palíndromo</legend>
+            <label for="palindromo">Digite uma palavra:</label>
+            <input type="text" id="palindromo" name="palindromo" required>
+            <button type="button" onclick="verificarPalindromo()">Verificar</button>
+            <p id="resultadoPalindromo"></p>
+            
+        </fieldset>
 
     <br><br>
 
@@ -201,6 +214,17 @@
             }
             else {
                 alert("Login bem-sucedido!");
+            }
+        }
+
+        //Questão 6
+        function verificarPalindromo() {
+            let palavra = document.getElementById("palindromo").value;
+            let palavraInvertida = palavra.split('').reverse().join('');
+            if (palavra === palavraInvertida) {
+                document.getElementById("resultadoPalindromo").innerText = "É um palíndromo";
+            } else {
+                document.getElementById("resultadoPalindromo").innerText = "Não é um palíndromo";
             }
         }
 
